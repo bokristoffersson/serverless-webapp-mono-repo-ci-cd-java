@@ -130,7 +130,7 @@ public class RecognizeImageHandler implements RequestHandler<APIGatewayProxyRequ
             SearchFacesByImageResponse searchFacesByImageResponse = rekognitionClient.searchFacesByImage(builder -> builder.collectionId(COLLECTION_ID)
                     .image(Image.builder()
                             .bytes(SdkBytes.fromByteArray(decodedImage)).build())
-                    .maxFaces(1)
+                    .maxFaces(5)
                     .faceMatchThreshold(90f));
 
             LOG.debug("Service response for find face {}", searchFacesByImageResponse);
