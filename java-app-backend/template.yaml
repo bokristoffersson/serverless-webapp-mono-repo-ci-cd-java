@@ -12,9 +12,9 @@ Metadata:
     LicenseUrl: LICENSE.txt
     ReadmeUrl: README.md
     Labels: ['reckognition', 'apigateway', 's3', 'cicd', 'devops']
-    HomePageUrl: https://github.com/aws-samples/serverless-webapp-mono-repo-ci-cd-java
+    HomePageUrl: https://github.com/bokristoffersson/serverless-webapp-mono-repo-ci-cd-java
     SemanticVersion: 1.0.0
-    SourceCodeUrl: https://github.com/aws-samples/serverless-webapp-mono-repo-ci-cd-java
+    SourceCodeUrl: https://github.com/bokristoffersson/serverless-webapp-mono-repo-ci-cd-java
 
 Globals:
   Api:

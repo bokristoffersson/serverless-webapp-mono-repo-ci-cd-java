@@ -1,10 +1,10 @@
 export const GLOBAL_CONSTANTS = {
-    'FIND_IMAGE': 'https://x28114lgr6.execute-api.eu-west-1.amazonaws.com/Prod' + '/recognise',
-    'UPLOAD_URL': 'https://x28114lgr6.execute-api.eu-west-1.amazonaws.com/Prod' + '/upload-url',
+    'FIND_IMAGE': 'https://369m9t77c1.execute-api.eu-west-1.amazonaws.com/Prod/' + '/recognise',
+    'UPLOAD_URL': 'https://369m9t77c1.execute-api.eu-west-1.amazonaws.com/Prod/' + '/upload-url',
 };
 
 export const Links_List = [
-    {label: 'Source code for the project', link: 'https://github.com/aws-samples/serverless-webapp-mono-repo-ci-cd-java'},
+    {label: 'Source code for the project', link: 'https://github.com/bokristoffersson/serverless-webapp-mono-repo-ci-cd-java'},
     {label: 'Architecture diagram', link: '/serverless-webapp-mono-repo-ci-cd-java.png'},
     {label: 'Amazon Rekognition', link: 'https://aws.amazon.com/rekognition/'},
     {label: 'AWS Serverless Application Model', link: 'https://aws.amazon.com/serverless/sam/'},
