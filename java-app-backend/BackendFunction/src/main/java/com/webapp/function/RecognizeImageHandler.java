@@ -68,32 +68,38 @@ public class RecognizeImageHandler implements RequestHandler<APIGatewayProxyRequ
         List<FaceMatch> faceMatches = faceSearch(decodedImage);
 
         if (faceMatches.size() > 0) {
-            FaceMatch faceMatch = faceMatches.get(0);
+            StringBuilder res = new StringBuilder();
 
-            LOG.debug("Details of matched face: {}", faceMatch);
+            for (FaceMatch faceMatch: faceMatches) {
 
-            Map<String, AttributeValue> keyMap = new HashMap<>();
+                LOG.debug("Details of matched face: {}", faceMatch);
 
-            keyMap.put("RekognitionId", AttributeValue.builder()
-                    .s(faceMatch.face().faceId())
-                    .build());
+                Map<String, AttributeValue> keyMap = new HashMap<>();
 
-            GetItemResponse faceDetails = query(keyMap);
+                keyMap.put("RekognitionId", AttributeValue.builder()
+                        .s(faceMatch.face().faceId())
+                        .build());
 
-            if (faceDetails.hasItem()) {
-                String fullName = faceDetails.item().get("FullName").s();
+                GetItemResponse faceDetails = query(keyMap);
 
-                putAnnotation("FullName", fullName);
-                putMetadata("Confidence", faceMatch.face().confidence());
+                if (faceDetails.hasItem()) {
+                    String fullName = faceDetails.item().get("FullName").s();
 
-                metricsLogger().putMetric("FaceSearchCount", 1, Unit.COUNT);
+                    putAnnotation("FullName", fullName);
+                    putMetadata("Confidence", faceMatch.face().confidence());
 
-                return apiGatewayProxyResponseEvent
+                    metricsLogger().putMetric("FaceSearchCount", 1, Unit.COUNT);
+
+                    res.append(" ")
+                            .append(fullName)
+                            .append(",");
+                }
+            }
+            return apiGatewayProxyResponseEvent
                         .withStatusCode(200)
                         .withBody("{\n" +
-                                "  \"person_name\": \"" + fullName + "\"\n" +
+                                "  \"person_name\": \"" + res.toString() + "\"\n" +
                                 "}");
-            }
         }
 
         metricsLogger().putMetric("FaceSearchCount", 0, Unit.COUNT);
